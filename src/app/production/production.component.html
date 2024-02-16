@@ -1,0 +1,41 @@
+<section class="screen">
+    <div class="h3-div">
+        <img src="\assets\dairytech-removebg-preview (1) 2.png">
+    </div>
+    <div style="height:20%">
+        <h1 *ngIf="production">EM PRODUÇÃO</h1>
+        <h1 *ngIf="!production">PRODUÇÃO FINALIZADA</h1>
+    </div>
+
+    <div class="content">
+        <div style="display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;">
+            <div class="milk-div">
+                <div class="milk-type">
+                    <h2>SEM LACTOSE</h2>
+                </div>
+                <div class="quantity">
+                    <h4>150 LITROS</h4>
+                    <h4>DATA DE FABRICAÇÃO: 05/02/2024</h4>
+                </div>
+            </div>
+            <h3 *ngIf="production">15 CAIXAS/ 150 CAIXAS</h3>
+            <h3 *ngIf="!production">150 CAIXAS/ 150 CAIXAS</h3>
+
+        </div>
+        <div class="button-div" *ngIf="production">
+            <img style="width:300px; height:auto" src="\assets\13-54-26-419_512.webp" >
+        </div>
+        <div class="button-div" *ngIf="!production">
+            <p *ngIf="production">TEMPO ATÉ AGORA</p>
+            <p *ngIf="!production">TEMPO TOTAL GASTO</p>
+            <h4>13:56</h4>
+            <button (click)="changePage()" *ngIf="!production">
+                ENVIAR DADOS
+            </button>
+        </div>
+    </div>
+
+</section>
