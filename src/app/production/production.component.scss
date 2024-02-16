@@ -1,0 +1,90 @@
+.screen {
+    width: 100%;
+    height: 100vh;
+    background-color: #F3F3F3;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+
+    .milk-div {
+        background-color: #FFF1CD;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        border-color: #092C4C;
+        border: solid 0.5px;
+        border-radius: 2px;
+
+        .milk-type {
+            background-color: #FBE19E;
+            width: 300px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                color: black;
+                font-family: system-ui;
+            }
+        }
+
+        .quantity {
+            height: 15%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                color: black;
+                font-family: system-ui;
+            }
+
+        }
+    }
+
+    .button-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        button {
+            width: 200px;
+            height: 50px;
+            background-color: #092C4C;
+            color: white;
+            font-family: system-ui;
+        }
+
+    }
+
+}
+
+.h3-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: system-ui;
+}
+
+p,
+h3,
+h4,
+h2,
+h1 {
+    font-family: system-ui;
+}
