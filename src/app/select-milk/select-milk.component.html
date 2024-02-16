@@ -7,7 +7,7 @@
         <div class="left-div">
             <h1>Selecione o tipo de leite</h1>
             <div class="flexWrap-div">
-                <div [style.background-color]="card.colorCard" class="card" *ngFor="let card of milkOptions">
+                <div [style.background-color]="card.colorCard" (click)="changeSelected(card)" [ngClass]="card.selected == false ? 'card' : 'cardSelected'" *ngFor="let card of milkOptions">
 
                     <h1 [style.background-color]="card.colorName" class="name">
                         {{card.name}}
@@ -17,7 +17,8 @@
 
                     <div class="liters-and-name-div">
                         <p>{{card.liters}} LITROS</p>
-                        <p>FABRICAÇÃO: {{card.fabrication}}</p>
+                        <p>ORDENHA: {{card.fabrication}}</p>
+                        <p>ORIGEM: </p>
                     </div>
 
                 </div>
@@ -26,12 +27,12 @@
 
         <div class="right-div">
             <div class="btn-div">
-                <button>
+                <button [routerLink]="'/production'">
                     INICIAR PROCESSO
                 </button>
 
                 <p>
-                    395 CAIXAS PARA SEREM FEITAS
+                    {{sumMilkLiters()}} CAIXAS PARA SEREM FEITAS
                 </p>
             </div>
         </div>

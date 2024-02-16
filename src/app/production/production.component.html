@@ -1,5 +1,5 @@
 <section class="screen">
-    <div class="h3-div">
+    <div [routerLink]="'/select-milk'" class="h3-div">
         <img src="\assets\dairytech-removebg-preview (1) 2.png">
     </div>
     <div style="height:20%">
@@ -19,6 +19,7 @@
                 <div class="quantity">
                     <h4>150 LITROS</h4>
                     <h4>DATA DE FABRICAÇÃO: 05/02/2024</h4>
+                    <h4>ORIGEM:</h4>
                 </div>
             </div>
             <h3 *ngIf="production">15 CAIXAS/ 150 CAIXAS</h3>

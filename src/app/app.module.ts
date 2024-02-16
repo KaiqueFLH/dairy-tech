@@ -9,7 +9,7 @@ import { SelectMilkComponent } from './select-milk/select-milk.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductionComponent
+    ProductionComponent,
     SelectMilkComponent
   ],
   imports: [
