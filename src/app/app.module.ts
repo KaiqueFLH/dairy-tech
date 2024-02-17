@@ -3,8 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductionComponent } from './production/production.component';
-import { ProductionModule } from './production/production.module';
 import { SelectMilkComponent } from './select-milk/select-milk.component';
+import { CommonModule } from '@angular/common';
+import { WebSocketService } from './services/web-socket.service';
+import { EnvaseService } from './services/envase.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,10 +17,14 @@ import { SelectMilkComponent } from './select-milk/select-milk.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    ProductionModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    WebSocketService,
+    EnvaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
