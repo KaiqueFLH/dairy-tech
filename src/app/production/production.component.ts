@@ -10,27 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ProductionComponent {
   production?: boolean = true
-  buttonText?: string = "SIMULAR SENSOR"
-  dataOrdenha?: string;
-
+  time?: string = "00:00:00";
 
   process = {
     quantidadeEnvasada: 0,
     quantidadeFinal: 0,
     id: 0,
-    createdAt: new Date(),
+    dataOrdenha: "",
+    origem: "",
     tipo: "string",
-  }
-
-
-
-  changePage() {
-    this.production = !this.production;
-    if (!this.production) {
-      this.buttonText = "ENVIAR DADOS"
-    } else {
-      this.buttonText = "SIMULAR SENSOR"
-    }
+    createdAt: "",
+    updatedAt: "",
   }
 
   constructor(
@@ -43,7 +33,6 @@ export class ProductionComponent {
     this.envaseService.getEnvasamentoExistente().subscribe(
       (data: any) => {
         this.process = JSON.parse(data);
-        this.dataOrdenha = new Date(this.process.createdAt).toLocaleDateString();
       },
       (error: any) => {
         this.route.navigate(['/select-milk']);
@@ -54,21 +43,36 @@ export class ProductionComponent {
     const socket = this.websocketService.connect();
 
     socket.onopen = () => {
-      console.log('WebSocket connection established.');
       this.websocketService.sendMessage('INTEGRAL');
     };
 
     socket.onmessage = (event) => {
-      console.log('Message received from server:', event.data);
       this.process = JSON.parse(event.data);
+      if (this.process.quantidadeEnvasada == this.process.quantidadeFinal) {
+        const createdAt = new Date(this.process.createdAt);
+        const updatedAt = new Date(this.process.updatedAt);
+
+        const timeDifference = updatedAt.getTime() - createdAt.getTime();
+
+        if (!isNaN(timeDifference)) {
+          const seconds = Math.floor((timeDifference / 1000) % 60);
+          const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+          const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+          if (seconds < 10) {
+            this.time = hours + "0:0" + minutes + ":0" + seconds;
+          } else {
+            this.time = hours + "0:0" + minutes + ":" + seconds;
+          }
+          this.production = false;
+        } else {
+          console.log("Invalid timestamps, unable to calculate time difference.");
+        }
+      }
     };
 
     socket.onclose = () => {
-      console.log('WebSocket connection closed.');
       // Lógica para lidar com o fechamento da conexão
     };
   }
-
-
 
 }

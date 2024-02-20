@@ -18,7 +18,7 @@
                     <div class="liters-and-name-div">
                         <p>{{card.liters}} LITROS DISPONÍVEIS</p>
                         <p>ORDENHA: {{card.fabrication}}</p>
-                        <p>ORIGEM: </p>
+                        <p>ORIGEM: {{card.origem}}</p>
                     </div>
 
                 </div>
@@ -27,13 +27,9 @@
 
         <div class="right-div">
             <div class="btn-div">
-                <button [routerLink]="'/production'">
+                <button (click)="iniciarProcesso()" [disabled]="hasLitters()" [ngStyle]="{opacity: hasLitters() ? '0.5' : '1'}">
                     INICIAR PROCESSO
                 </button>
-
-                <p>
-                    CAIXAS PARA SEREM FEITAS
-                </p>
             </div>
         </div>
     </section>

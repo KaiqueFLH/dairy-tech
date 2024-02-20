@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +10,10 @@ export class EnvaseService {
 
   getEnvasamentoExistente(){
     return this.http.get('http://localhost:3000/envase-existente');
+  }
+
+  iniciarEnvase(tipo: string){
+    let params = new HttpParams().set('tipo', tipo);
+    return this.http.put('http://localhost:3000/iniciar-processo', null, { params });
   }
 }

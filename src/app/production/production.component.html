@@ -18,23 +18,20 @@
                 </div>
                 <div class="quantity">
                     <h4>{{process.quantidadeFinal}} LITROS</h4>
-                    <h4>DATA DE FABRICAÇÃO: {{dataOrdenha}}</h4>
-                    <h4>ORIGEM: </h4>
+                    <h4>DATA DE FABRICAÇÃO: {{process.dataOrdenha}}</h4>
+                    <h4>ORIGEM: {{process.origem}}</h4>
                 </div>
             </div>
-            <h3 style="padding-top: 15px;" *ngIf="production">{{process.quantidadeEnvasada}} CAIXAS / {{process.quantidadeFinal}} CAIXAS</h3>
-            <h3 style="padding-top: 15px;" *ngIf="!production">150 CAIXAS / 150 CAIXAS</h3>
+            <h3 style="padding-top: 15px;">{{process.quantidadeEnvasada}} CAIXAS ENVASADAS / {{process.quantidadeFinal}} CAIXAS TOTAIS</h3>
 
         </div>
         <div class="button-div" *ngIf="production">
             <img style="width:300px; height:auto" src="\assets\13-54-26-419_512.webp" >
         </div>
         <div class="button-div" *ngIf="!production">
-            <p *ngIf="!production">TEMPO TOTAL GASTO</p>
-            <h4>13:56</h4>
-            <button (click)="changePage()" *ngIf="!production">
-                ENVIAR DADOS
-            </button>
+            <p>TEMPO TOTAL DE PRODUÇÃO</p>
+            <h4>{{time}}</h4>
+            <p>DADOS FORAM ENVIADOS AUTOMATICAMENTE PARA O ARMAZENAMENTO</p>
         </div>
     </div>
 

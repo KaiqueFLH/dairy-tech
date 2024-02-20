@@ -1,6 +1,7 @@
 main{
     width: 100vw;
     height: 100vh;
+    background-color: #F3F3F3;
 }
 
 header{
@@ -43,9 +44,15 @@ section{
                 border-radius: 5px;
                 opacity: 0.4;
                 align-items: center;
+                cursor: pointer;
+
+                &:hover{
+                    scale: 1.02;
+                }
             }
 
             .cardSelected{
+                cursor: pointer;
                 width: 350px;
                 height: 40%;
                 display: flex;
@@ -55,6 +62,10 @@ section{
                 border-radius: 5px;
                 border: rgb(59, 61, 68) 1px solid;
                 align-items: center;
+
+                &:hover{
+                    scale: 1.02;
+                }
             }
 
             .name{
@@ -109,6 +120,9 @@ section{
             font-weight: 400;
             font-family: system-ui;
             cursor: pointer;
+            &:hover{
+                scale: 1.02;
+            }
         }
     }
 }
