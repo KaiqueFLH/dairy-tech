@@ -48,6 +48,7 @@ export class ProductionComponent {
 
     socket.onmessage = (event) => {
       this.process = JSON.parse(event.data);
+      
       if (this.process.quantidadeEnvasada == this.process.quantidadeFinal) {
         const createdAt = new Date(this.process.createdAt);
         const updatedAt = new Date(this.process.updatedAt);
@@ -64,6 +65,13 @@ export class ProductionComponent {
             this.time = hours + "0:0" + minutes + ":" + seconds;
           }
           this.production = false;
+          this.envaseService.sendQuantidadeLeite(this.process.id).subscribe(
+            (data) => {
+              setInterval(() => {
+                this.route.navigate(['/select-milk']);
+              }, 5000);
+            }
+          );
         } else {
           console.log("Invalid timestamps, unable to calculate time difference.");
         }

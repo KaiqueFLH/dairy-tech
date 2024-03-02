@@ -21,6 +21,13 @@ export class SelectMilkComponent {
     
   }
 
+  milkOptions: any[] = [
+    { name: 'INTEGRAL', liters: 0, fabrication: "", origem: "", selected: true, colorCard: "#D8E7FF", colorName: "#87C5FD", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-INTEGRAL.png" },
+    { name: 'DESNATADO', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#D9EED2", colorName: "#9BDDA1", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-DESNATADO-1.png" },
+    { name: 'SEMIDESNATADO', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#FFE2E2", colorName: "#F5B1B1", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-SEMI.png" },
+    { name: 'SEM LACTOSE', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#FFF1CD", colorName: "#FBE19E", urlImage: "https://www.italac.com.br/wp-content/uploads/2019/06/LeiteSemi_IN.png" }
+  ];
+
   constructor(
     private envaseService: EnvaseService,
     private route: Router,
@@ -32,16 +39,21 @@ export class SelectMilkComponent {
 
   ngOnInit() {
     this.envaseService.getEnvasamentoExistente().subscribe(
-      (data: any) => {
+      (data) => {
         this.route.navigate(['/production']);
       },
-      (error: any) => {
+      (error) => { 
         this.loteService.getLeites().subscribe(
           (data: any) => {
+            console.log(data);
+            
             let leites = data;
+            console.log(leites);
             
             this.milkOptions.forEach(
               (option) => {
+                console.log(option);
+                
                 let index = 5;
                 if (option.name === "INTEGRAL") {
                   index = 0;
@@ -52,6 +64,8 @@ export class SelectMilkComponent {
                 } else if (option.name === "SEM LACTOSE") {
                   index = 3;
                 }
+                console.log(leites[index].quantidadeLeite);
+                
                 option.liters = leites[index].quantidadeLeite;
                 if(option.liters !== 0){
                   option.origem = leites[index].origem;
@@ -61,20 +75,17 @@ export class SelectMilkComponent {
               })
           },
           (error: any) => {
-            console.log("Teste" + error);
+            console.log(error);
           }
         );
 
       }
     );
+    console.log(this.milkOptions);
+    
   }
 
-  milkOptions: any[] = [
-    { name: 'INTEGRAL', liters: 0, fabrication: "", origem: "", selected: true, colorCard: "#D8E7FF", colorName: "#87C5FD", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-INTEGRAL.png" },
-    { name: 'DESNATADO', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#D9EED2", colorName: "#9BDDA1", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-DESNATADO-1.png" },
-    { name: 'SEMIDESNATADO', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#FFE2E2", colorName: "#F5B1B1", urlImage: "https://www.italac.com.br/wp-content/uploads/2015/05/AF-3D-LEITE-SEMI.png" },
-    { name: 'SEM LACTOSE', liters: 0, fabrication: "", origem: "", selected: false, colorCard: "#FFF1CD", colorName: "#FBE19E", urlImage: "https://www.italac.com.br/wp-content/uploads/2019/06/LeiteSemi_IN.png" }
-  ];
+
 
   hasLitters(): boolean{   
     return this.selectedCard.liters == 0;
